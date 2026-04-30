@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TalentBridge Job Board
 
-## Getting Started
+A high-quality UX job board built with Next.js, TypeScript, Tailwind CSS, Supabase, and GitHub Actions CI/CD.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Candidate discovery flow with filters, role pages, saved jobs, and application tracking.
+- Employer flow with role-based dashboard, posting workflow, and applicant pipeline view.
+- Role-based authentication setup (`candidate` and `employer`) with Supabase.
+- Clean mobile-first UX with clear information hierarchy and state messaging.
+- CI pipeline for lint, type-check, tests, and production build.
+- Automated Vercel deployment workflow triggered after successful CI on `main`.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `Next.js` (App Router) + `TypeScript`
+- `Tailwind CSS`
+- `Supabase` (`@supabase/supabase-js`, `@supabase/ssr`)
+- `React Hook Form` + `Zod`
+- `Vitest` + Testing Library
+- `GitHub Actions` + `Vercel`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Local Setup
 
-## Learn More
+1. Install dependencies:
+   - `npm install`
+2. Configure environment:
+   - Copy `.env.example` to `.env.local`
+   - Fill `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+3. Run development server:
+   - `npm run dev`
+4. Open [http://localhost:3000](http://localhost:3000)
 
-To learn more about Next.js, take a look at the following resources:
+## Scripts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `npm run dev` - start local development server
+- `npm run lint` - run ESLint
+- `npm run typecheck` - run TypeScript type checks
+- `npm run test` - run test suite
+- `npm run build` - build for production
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Database Setup
 
-## Deploy on Vercel
+Run SQL migration from:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `supabase/migrations/001_initial_schema.sql`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Core tables:
+
+- `profiles`
+- `companies`
+- `jobs`
+- `applications`
+- `saved_jobs`
+
+## CI/CD
+
+- CI workflow: `.github/workflows/ci.yml`
+- Deploy workflow: `.github/workflows/deploy-vercel.yml`
+
+Required GitHub secrets:
+
+- `VERCEL_TOKEN`
+- `VERCEL_ORG_ID`
+- `VERCEL_PROJECT_ID`
+
+## Documentation
+
+- `docs/features.md`
+- `docs/architecture.md`
+- `docs/deployment.md`
