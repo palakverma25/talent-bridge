@@ -15,8 +15,8 @@ export default function DocumentationPage() {
       <section className="rounded-xl border border-zinc-200 bg-white p-6">
         <h2 className="text-xl font-semibold">Architecture</h2>
         <p className="mt-3 text-sm text-zinc-700">
-          Next.js App Router powers UI and API routes. Supabase handles auth and data. A role guard protects dashboard
-          routes. CI validates lint, types, tests, and build before deployment.
+          Next.js App Router powers UI and API routes. A custom JWT implementation handles auth, and a lightweight JSON 
+          file handles data state. A role guard protects dashboard routes. CI validates lint, types, tests, and build before deployment.
         </p>
       </section>
       <section className="rounded-xl border border-zinc-200 bg-white p-6">

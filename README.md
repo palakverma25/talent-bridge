@@ -1,24 +1,23 @@
 # TalentBridge Job Board
 
-A high-quality UX job board built with Next.js, TypeScript, Tailwind CSS, Supabase, and GitHub Actions CI/CD.
+A premium UX job board built with Next.js, TypeScript, Tailwind CSS, and a file-based state system.
 
 ## Features
 
-- Candidate discovery flow with filters, role pages, saved jobs, and application tracking.
-- Employer flow with role-based dashboard, posting workflow, and applicant pipeline view.
-- Role-based authentication setup (`candidate` and `employer`) with Supabase.
-- Clean mobile-first UX with clear information hierarchy and state messaging.
-- CI pipeline for lint, type-check, tests, and production build.
-- Automated Vercel deployment workflow triggered after successful CI on `main`.
+- **Candidate Flow**: Discovery flow with filters, role pages, saved jobs, and application tracking.
+- **Employer Flow**: Role-based dashboard, posting workflow, and applicant pipeline view.
+- **Custom Authentication**: Custom JWT-based authentication flow (no third-party auth needed).
+- **Stateful Local DB**: Fully stateful application using a file-based JSON database for jobs and applications.
+- **Premium UI**: Vibrant color palette, glassmorphism, micro-animations, and dynamic data.
+- **CI/CD Pipeline**: GitHub Actions for lint/test and automated Vercel deployment.
 
 ## Tech Stack
 
 - `Next.js` (App Router) + `TypeScript`
 - `Tailwind CSS`
-- `Supabase` (`@supabase/supabase-js`, `@supabase/ssr`)
+- `jose` (for JWT Authentication)
 - `React Hook Form` + `Zod`
 - `Vitest` + Testing Library
-- `GitHub Actions` + `Vercel`
 
 ## Local Setup
 
@@ -26,7 +25,7 @@ A high-quality UX job board built with Next.js, TypeScript, Tailwind CSS, Supaba
    - `npm install`
 2. Configure environment:
    - Copy `.env.example` to `.env.local`
-   - Fill `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - Add `JWT_SECRET` (optional, falls back to a default locally)
 3. Run development server:
    - `npm run dev`
 4. Open [http://localhost:3000](http://localhost:3000)
@@ -39,30 +38,15 @@ A high-quality UX job board built with Next.js, TypeScript, Tailwind CSS, Supaba
 - `npm run test` - run test suite
 - `npm run build` - build for production
 
-## Database Setup
+## Database & State
 
-Run SQL migration from:
-
-- `supabase/migrations/001_initial_schema.sql`
-
-Core tables:
-
-- `profiles`
-- `companies`
-- `jobs`
-- `applications`
-- `saved_jobs`
+The project uses a local, lightweight file-based database for simplicity and immediate functionality.
+Data is stored in `src/lib/data/db.json` and handled by `src/lib/db.ts`.
 
 ## CI/CD
 
 - CI workflow: `.github/workflows/ci.yml`
 - Deploy workflow: `.github/workflows/deploy-vercel.yml`
-
-Required GitHub secrets:
-
-- `VERCEL_TOKEN`
-- `VERCEL_ORG_ID`
-- `VERCEL_PROJECT_ID`
 
 ## Documentation
 

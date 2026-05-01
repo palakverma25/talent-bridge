@@ -16,9 +16,9 @@
 
 ## Authentication And Roles
 
-- Email/password auth via Supabase.
-- Onboarding flow persists role (`candidate`, `employer`) to `profiles`.
-- Role checks gate dashboard routes and posting experience.
+- Custom JWT-based authentication flow.
+- Role (`candidate`, `employer`) is embedded in the JWT payload.
+- Role checks gate dashboard routes and posting experience via Server Actions and `src/lib/auth.ts`.
 
 ## UX Decisions
 
