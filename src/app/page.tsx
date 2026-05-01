@@ -1,8 +1,10 @@
 import Link from "next/link";
-import { mockJobs } from "@/lib/data/mock";
+import { getJobs } from "@/lib/db";
 import { JobCard } from "@/components/job-card";
 
-export default function Home() {
+export default async function Home() {
+  const allJobs = getJobs();
+  
   return (
     <div className="space-y-10">
       <section className="rounded-2xl bg-white p-8 shadow-sm">
@@ -26,7 +28,7 @@ export default function Home() {
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold text-zinc-900">Featured opportunities</h2>
         <div className="grid gap-4 md:grid-cols-2">
-          {mockJobs.slice(0, 2).map((job) => (
+          {allJobs.slice(0, 2).map((job) => (
             <JobCard key={job.id} job={job} />
           ))}
         </div>

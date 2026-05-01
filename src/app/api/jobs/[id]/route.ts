@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import { mockJobs } from "@/lib/data/mock";
+import { getJobById } from "@/lib/db";
 
 export async function GET(
   _req: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ) {
   const { id } = await params;
-  const job = mockJobs.find((item) => item.id === id);
+  const job = getJobById(id);
 
   if (!job) {
     return NextResponse.json({ error: "Job not found" }, { status: 404 });

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { mockJobs } from "@/lib/data/mock";
+import { getJobs } from "@/lib/db";
 
 export async function GET() {
-  return NextResponse.json({ jobs: mockJobs });
+  return NextResponse.json({ jobs: getJobs() });
 }

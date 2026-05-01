@@ -1,12 +1,14 @@
 import Link from "next/link";
-import { mockJobs } from "@/lib/data/mock";
+import { getJobs } from "@/lib/db";
 
-export default function SavedJobsPage() {
+export default async function SavedJobsPage() {
+  const allJobs = getJobs();
+  
   return (
     <div className="space-y-5">
       <h1 className="text-2xl font-semibold text-zinc-900">Saved jobs</h1>
       <div className="grid gap-3">
-        {mockJobs.map((job) => (
+        {allJobs.map((job) => (
           <div key={job.id} className="rounded-xl border border-zinc-200 bg-white p-4">
             <p className="font-medium">{job.title}</p>
             <p className="text-sm text-zinc-600">{job.company}</p>

@@ -1,0 +1,100 @@
+{
+  "jobs": [
+    {
+      "id": "1",
+      "title": "Frontend Engineer",
+      "company": "Nova Labs",
+      "location": "Bengaluru",
+      "salary": "INR 14-22 LPA",
+      "jobType": "full-time",
+      "workMode": "hybrid",
+      "experienceLevel": "mid",
+      "description": "Build performant product surfaces in Next.js, collaborate closely with design, and ship user-centric features with strong accessibility.",
+      "skills": [
+        "TypeScript",
+        "React",
+        "Next.js",
+        "Tailwind CSS"
+      ],
+      "postedAt": "2 days ago",
+      "employerEmail": "employer@example.com"
+    },
+    {
+      "id": "2",
+      "title": "Backend Engineer",
+      "company": "ScaleGrid",
+      "location": "Pune",
+      "salary": "INR 18-28 LPA",
+      "jobType": "full-time",
+      "workMode": "remote",
+      "experienceLevel": "senior",
+      "description": "Design APIs, optimize query performance, and own service reliability for high-volume candidate and employer workflows.",
+      "skills": [
+        "Node.js",
+        "PostgreSQL",
+        "REST",
+        "CI/CD"
+      ],
+      "postedAt": "1 day ago",
+      "employerEmail": "employer@example.com"
+    },
+    {
+      "id": "3",
+      "title": "Product Designer",
+      "company": "BrightHire",
+      "location": "Mumbai",
+      "salary": "INR 10-16 LPA",
+      "jobType": "contract",
+      "workMode": "on-site",
+      "experienceLevel": "mid",
+      "description": "Lead end-to-end UX for the job discovery and application journey with data-backed interaction improvements.",
+      "skills": [
+        "Figma",
+        "Design Systems",
+        "User Research"
+      ],
+      "postedAt": "4 days ago",
+      "employerEmail": "employer2@example.com"
+    },
+    {
+      "id": "1777655979287",
+      "title": "fvg",
+      "company": "vfvrvb",
+      "location": "vv",
+      "salary": "Not specified",
+      "jobType": "full-time",
+      "workMode": "on-site",
+      "experienceLevel": "mid",
+      "description": "vvt",
+      "skills": [],
+      "postedAt": "Just now",
+      "employerEmail": "palak@gmail.com"
+    }
+  ],
+  "applications": [
+    {
+      "id": "app-1",
+      "jobId": "1",
+      "applicantEmail": "candidate@example.com",
+      "applicantName": "Aarav Nair",
+      "status": "Shortlisted",
+      "appliedAt": "2023-10-25T10:00:00Z"
+    },
+    {
+      "id": "app-2",
+      "jobId": "1",
+      "applicantEmail": "neha@example.com",
+      "applicantName": "Neha Rao",
+      "status": "In review",
+      "appliedAt": "2023-10-26T14:30:00Z"
+    },
+    {
+      "id": "app-1777655911170",
+      "jobId": "1",
+      "applicantEmail": "palakverma2504@gmail.com",
+      "applicantName": "fgt",
+      "status": "In review",
+      "appliedAt": "2026-05-01T17:18:31.170Z"
+    }
+  ]
+}

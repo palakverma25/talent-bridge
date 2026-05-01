@@ -1,35 +1,55 @@
 import { redirect } from "next/navigation";
-import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { cookies } from "next/headers";
+import { SignJWT, jwtVerify } from "jose";
 import { UserRole } from "@/types";
 
-export const requireRole = async (allowedRoles: UserRole[]) => {
-  const supabase = await createSupabaseServerClient();
-  if (!supabase) {
-    return { demoMode: true, role: allowedRoles[0] };
+const SECRET_KEY = new TextEncoder().encode(
+  process.env.JWT_SECRET || "default_super_secret_key_for_demo_mode_123"
+);
+
+const COOKIE_NAME = "auth_token";
+
+export async function signToken(payload: { role: UserRole; email: string }) {
+  return await new SignJWT(payload)
+    .setProtectedHeader({ alg: "HS256" })
+    .setIssuedAt()
+    .setExpirationTime("24h")
+    .sign(SECRET_KEY);
+}
+
+export async function verifyToken(token: string) {
+  try {
+    const { payload } = await jwtVerify(token, SECRET_KEY);
+    return payload as { role: UserRole; email: string };
+  } catch (error) {
+    return null;
   }
+}
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+export async function getUser() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get(COOKIE_NAME)?.value;
+  if (!token) return null;
+  return await verifyToken(token);
+}
 
-  if (!user) {
+export const requireRole = async (allowedRoles: UserRole[]) => {
+  const cookieStore = await cookies();
+  const token = cookieStore.get(COOKIE_NAME)?.value;
+
+  if (!token) {
     redirect("/auth/sign-in");
   }
 
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("role")
-    .eq("id", user.id)
-    .single();
+  const payload = await verifyToken(token);
 
-  const role = profile?.role as UserRole | undefined;
-  if (!role) {
-    redirect("/auth/onboarding");
+  if (!payload || !payload.role) {
+    redirect("/auth/sign-in");
   }
 
-  if (!allowedRoles.includes(role)) {
-    redirect(role === "employer" ? "/dashboard/employer" : "/dashboard/candidate");
+  if (!allowedRoles.includes(payload.role)) {
+    redirect(payload.role === "employer" ? "/dashboard/employer" : "/dashboard/candidate");
   }
 
-  return { demoMode: false, role };
+  return { role: payload.role };
 };

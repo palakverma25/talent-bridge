@@ -1,6 +1,7 @@
 import { JobCard } from "@/components/job-card";
 import { JobFilters } from "@/components/job-filters";
-import { filterJobs, mockJobs } from "@/lib/data/mock";
+import { filterJobs } from "@/lib/data/mock";
+import { getJobs } from "@/lib/db";
 
 type Props = {
   searchParams: Promise<Record<string, string | undefined>>;
@@ -8,7 +9,7 @@ type Props = {
 
 export default async function JobsPage({ searchParams }: Props) {
   const params = await searchParams;
-  const jobs = filterJobs(mockJobs, {
+  const jobs = filterJobs(getJobs(), {
     query: params.query,
     location: params.location,
     workMode: (params.workMode as "remote" | "hybrid" | "on-site" | "all") ?? "all",

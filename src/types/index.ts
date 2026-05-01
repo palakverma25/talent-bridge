@@ -16,6 +16,7 @@ export interface Job {
   description: string;
   skills: string[];
   postedAt: string;
+  employerEmail?: string;
 }
 
 export interface JobFilters {
@@ -23,4 +24,14 @@ export interface JobFilters {
   location?: string;
   workMode?: WorkMode | "all";
   jobType?: JobType | "all";
+}
+
+export interface Application {
+  id: string;
+  jobId: string;
+  applicantEmail: string;
+  applicantName: string;
+  resumeUrl?: string;
+  status: "In review" | "Shortlisted" | "Interview" | "Rejected";
+  appliedAt: string;
 }

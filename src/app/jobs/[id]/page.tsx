@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { ApplyForm } from "@/components/apply-form";
-import { mockJobs } from "@/lib/data/mock";
+import { getJobById } from "@/lib/db";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -8,7 +8,7 @@ type Props = {
 
 export default async function JobDetailPage({ params }: Props) {
   const { id } = await params;
-  const job = mockJobs.find((item) => item.id === id);
+  const job = getJobById(id);
 
   if (!job) {
     notFound();
@@ -43,7 +43,7 @@ export default async function JobDetailPage({ params }: Props) {
           <p className="text-sm text-zinc-600">Compensation</p>
           <p className="text-lg font-semibold text-zinc-900">{job.salary}</p>
         </div>
-        <ApplyForm />
+        <ApplyForm jobId={job.id} />
       </aside>
     </div>
   );
